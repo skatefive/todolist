@@ -1,11 +1,11 @@
 Todo list
 ========================
 
-# Projekti ülessedmine
+### Projekti ülessedmine
 
 php app/console doctrine:database:create
 php app/console doctrine:fixtures:load
 php app/console doctrine:schema:update --force
 
-# App on kätte saadav
+### Projekt on kätte saadav
 localhost/app_dev.php/task/
