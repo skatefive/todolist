@@ -1,0 +1,23 @@
+{% extends 'EnsJobeetBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Task creation</h1>
+
+		{{ form_start(form) }}
+		    {{ form_errors(form) }}
+
+		    {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+		    {{ form_row(form.status, {'attr': {'class': 'form-control'}}) }}
+		    {{ form_row(form.due_date) }}
+
+		    {{ form_row(form.submit, { 'label': 'Create' }) }}
+		{{ form_end(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('ens_task') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

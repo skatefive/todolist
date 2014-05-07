@@ -1,0 +1,24 @@
+# src/Ens/JobeetBundle/Resources/config/doctrine/Task.orm.yml
+Ens\JobeetBundle\Entity\Task:
+  type: entity
+  repositoryClass: Ens\JobeetBundle\Repository\TaskRepository
+  table: task
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+    status:
+      type: integer
+    due_date:
+      type: datetime 
+#    updated_at:
+#      type: datetime        
+#    created_at:
+#      type: datetime       
+#lifecycleCallbacks:
+#     preUpdate: [ setUpdateTimestamp ]
+#     prePersist: [ setCreationTimestamp, setUpdateTimestamp ]

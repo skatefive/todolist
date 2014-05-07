@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        Fin - Task list
+      {% endblock %}
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('bundles/ensjobeet/css/bootstrap.css') }}" type="text/css" media="all" >
+      <link href="{{ asset('bundles/scdatetimepicker/css/datetimepicker.css') }}" rel="stylesheet"> 
+    {% endblock %}
+
+    {% block javascripts %}
+      <script  src="http://code.jquery.com/jquery-latest.min.js" ></script>
+      <script  src="{{ asset('bundles/ensjobeet/js/bootstrap.js') }}"></script>
+      <script  src="{{ asset('bundles/scdatetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+     <!-- <script  src="{{ asset('bundles/scdatetimepicker/js/custom.js') }}"></script> -->
+    {% endblock %}
+
+
+    <link rel="shortcut icon" href="{{ asset('bundles/ensjobeet/images/favicon.ico') }}" />
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+
+
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ path('ens_task') }}#">TODO list</a>
+        </div>
+
+        {% if entitiesCount is defined %}
+   
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="">
+              <a href="{{ path('ens_task') }}"> Kõik tööd
+                <span class="badge alert-success">{{ entitiesCount }}</span>
+              </a>  
+            </li>
+
+            <li class=""> 
+              <a href="{{ path('ens_task_status', { 'status': 1 }) }}"> 
+                Avatud tööd
+                <span class="badge"> {{ openEntitiesCount }} </span>
+              </a>
+            </li>
+            <li class="">
+              <a href="{{ path('ens_task_status', { 'status': 2 }) }}"> Pooleli tööd 
+                <span class="badge alert-danger">{{ inProgressEntitiesCount }}</span>
+              </a>  
+            </li>
+            <li class="">
+              <a href="{{ path('ens_task_status', { 'status': 3 }) }}"> Lõpetatud tööd 
+                <span class="badge">{{ closednEntitiesCount }}</span>
+              </a>  
+            </li>
+
+            <li class="divider-vertical"></li>
+            <li class="divider-vertical"></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Töö tähtajani kuni <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu">
+                {% for key,value in periods %}
+                  <li><a href="{{ path('ens_task_time', { 'time': value }) }}"> {{ key }} </a></li>
+                {% endfor %}  
+
+              </ul>
+            </li>
+          </ul>
+          {% endif %}
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+               <a href="{{ path('ens_task_new') }}">
+                 Lisa uus töö
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div id="container">
+      <div id="header">
+
+      {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Success!</strong> {{ flashMessage }}
+        </div>
+      {% endfor %}
+      <div class="content">
+      </div>
+ 
+      <div id="content">
+ 
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+      </div>
+ 
+      <div id="footer">
+
+      </div>
+
+    </div>
+  </body>
+</html>

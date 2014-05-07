@@ -1,0 +1,54 @@
+{% extends 'EnsJobeetBundle::layout.html.twig' %}
+
+{% block content %}  
+  
+<br>
+
+
+        {{ form_start(search_form) }}
+            {{ form_errors(search_form) }}
+            
+            <div class="form-group">
+                {{ form_row(search_form.string, {'label': 'Otsi nimetuse järgi: ', 'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_row(search_form.submit, { 'label': 'Otsi', 'attr':{'class': 'btn btn-default'}}) }}
+        {{ form_end(search_form) }}
+
+<br>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="info">
+                <th>Id</th>
+                <th>Nimetus</th>
+                <th>Status</th>
+                <th>Tähtaeg</th>
+                <th>Muuda</th>                
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+                <td>
+                    {% if entity.status  == 1 %}
+                        Avatud
+                    {% endif %}
+                    {% if entity.status  == 2 %}
+                        Pooleli
+                    {% endif %}
+                    {% if entity.status  == 3 %}
+                        Lõpetatud
+                    {% endif %}
+                </td>
+                <td>{{ entity.dueDate|date('Y-m-d H:i:s') }}</td>
+                <td>
+                    <a href="{{ path('ens_task_edit', { 'id': entity.id }) }}">Muuda</a>
+                </td>
+            </tr>
+        {% endfor %}
+ 
+        </tbody>
+    </table>
+{% endblock %}

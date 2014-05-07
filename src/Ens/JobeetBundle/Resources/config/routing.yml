@@ -1,0 +1,7 @@
+EnsJobeetBundle_job:
+    resource: "@EnsJobeetBundle/Resources/config/routing/task.yml"
+    prefix: /task
+ 
+EnsJobeetBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EnsJobeetBundle:Default:index }
