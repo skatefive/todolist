@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        Wunderkraut - Rss import
+      {% endblock %}
+    </title>    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('bundles/ensjobeet/css/bootstrap.css') }}" type="text/css" media="all" >
+    {% endblock %}
+
+    {% block javascripts %}
+      <script  src="http://code.jquery.com/jquery-latest.min.js" ></script>
+      <script  src="{{ asset('bundles/ensjobeet/js/bootstrap.js') }}"></script>
+    {% endblock %}
+
+
+    <link rel="shortcut icon" href="{{ asset('bundles/ensjobeet/images/favicon.ico') }}" />
+  </head>
+  <body>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="info">
+                <th>Title</th>
+                <th>Desciption</th>
+                <th>Link</th>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.title|raw }}</td>
+                <td>{{ item.description|raw}}</td>
+                <td>
+                    <a href="{{ item.link }}">
+                       Link
+                    </a>
+                </td>
+
+            </tr>
+        {% endfor %}
+ 
+        </tbody>
+    </table>
+  </body>
+</html>  

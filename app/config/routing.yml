@@ -1,3 +1,7 @@
+ens_rss:
+    resource: "@EnsRssBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ens_jobeet:
     resource: "@EnsJobeetBundle/Resources/config/routing.yml"
     prefix:   /

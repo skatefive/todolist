@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Ens\JobeetBundle\EnsJobeetBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            new Debril\RssAtomBundle\DebrilRssAtomBundle(),
+            new Ens\RssBundle\EnsRssBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
